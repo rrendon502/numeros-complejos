@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guía interactiva: Números complejos y factorización compleja</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="stylesheet" href="estilos.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script defer src="complejos.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Números complejos y factorización compleja</h1>
+    <p><strong>Objetivo:</strong> comprender los números complejos, su representación gráfica, el Teorema Fundamental del Álgebra y factorizar polinomios en el campo complejo.</p>
+    <nav aria-label="Módulos">
+      <a href="#m1">1. Fundamentos</a>
+      <a href="#m2">2. Plano complejo</a>
+      <a href="#m3">3. Potencias de i</a>
+      <a href="#m4">4. Factorización</a>
+      <a href="#m5">5. Autoevaluación</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="m1">
+      <h2>Módulo 1: Fundamentos</h2>
+      <p>Un número complejo tiene la forma $z = a + bi$, donde $a$ es la parte real, $b$ la parte imaginaria e $i^2 = -1$.</p>
+      <p>Escribe dos números complejos y observa las operaciones.</p>
+      <div class="fila">
+        <fieldset>
+          <legend>$z_1$</legend>
+          <label>Parte real <input id="a1" type="number" step="any" value="3"></label>
+          <label>Parte imaginaria <input id="b1" type="number" step="any" value="2"></label>
+        </fieldset>
+        <fieldset>
+          <legend>$z_2$</legend>
+          <label>Parte real <input id="a2" type="number" step="any" value="1"></label>
+          <label>Parte imaginaria <input id="b2" type="number" step="any" value="-4"></label>
+        </fieldset>
+      </div>
+      <table id="tabla-ops" aria-live="polite"></table>
+      <details>
+        <summary>¿Cómo se calcula?</summary>
+        <ul>
+          <li>Suma: $(a+bi)+(c+di)=(a+c)+(b+d)i$</li>
+          <li>Producto: $(a+bi)(c+di)=(ac-bd)+(ad+bc)i$</li>
+          <li>Conjugado: $\overline{a+bi}=a-bi$</li>
+          <li>Módulo: $|a+bi|=\sqrt{a^2+b^2}$</li>
+          <li>Cociente: se multiplica numerador y denominador por el conjugado del denominador.</li>
+        </ul>
+      </details>
+    </section>
+
+    <section id="m2">
+      <h2>Módulo 2: Plano complejo</h2>
+      <p>La parte real se representa en el eje $X$ y la parte imaginaria en el eje $Y$. Cambia los valores del Módulo 1 o <strong>haz clic en el plano</strong> para mover $z_1$ (el punto se redondea al 0.5 más cercano).</p>
+      <canvas id="plano" width="520" height="520" role="img" aria-label="Plano complejo con z1, z2 y su suma"></canvas>
+      <p class="leyenda"><span class="c1">■</span> $z_1$ &nbsp; <span class="c2">■</span> $z_2$ &nbsp; <span class="c3">■</span> $z_1+z_2$ (suma de vectores)</p>
+    </section>
+
+    <section id="m3">
+      <h2>Módulo 3: Potencias de i</h2>
+      <p>Las potencias de $i$ se repiten cada cuatro: $i^1=i,\ i^2=-1,\ i^3=-i,\ i^4=1$.</p>
+      <label>Exponente entero $n$ <input id="exp" type="number" step="1" value="3"></label>
+      <p id="res-potencia" class="resultado" aria-live="polite"></p>
+      <p class="pista">Pista: divide $n$ entre 4 y usa el residuo.</p>
+    </section>
+
+    <section id="m4">
+      <h2>Módulo 4: Teorema Fundamental del Álgebra y factorización</h2>
+      <p>Todo polinomio de grado $n$ con coeficientes complejos tiene exactamente $n$ raíces, contando multiplicidades. Por eso puede factorizarse en factores lineales complejos.</p>
+      <p>Prueba con $ax^2+bx+c$:</p>
+      <div class="fila">
+        <label>$a$ <input id="qa" type="number" step="any" value="1"></label>
+        <label>$b$ <input id="qb" type="number" step="any" value="0"></label>
+        <label>$c$ <input id="qc" type="number" step="any" value="4"></label>
+      </div>
+      <div id="res-factor" class="resultado" aria-live="polite"></div>
+      <p class="pista">Ejemplos: $x^2+4$, $x^2+9$, $x^2+2x+5$, $x^2-4$. Si el discriminante $b^2-4ac$ es negativo, las raíces son complejas conjugadas.</p>
+    </section>
+
+    <section id="m5">
+      <h2>Módulo 5: Autoevaluación</h2>
+      <p>Las preguntas y sus opciones se ordenan al azar cada vez.</p>
+      <div id="quiz"></div>
+    </section>
+  </main>
+
+  <footer><p>Guía didáctica interactiva. Todo se calcula en tu navegador; no necesitas instalar nada.</p></footer>
+</body>
+</html>
